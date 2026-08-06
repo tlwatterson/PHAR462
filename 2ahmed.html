@@ -1369,11 +1369,16 @@ Provide a list of recommendations
 Which of these changes feels most realistic right now?
 </button>
 
-<button onclick="determineEnding()">
+<button onclick="showScene('planC')">
 Given everything we've discussed, where would you like to start?
 </button>
 
 </div>
+
+    
+    
+    
+    
 <div id="planA" class="scene">
 
 <div class="quote">
@@ -1387,8 +1392,12 @@ The plan is medically sound and clearly communicated.
 <button onclick="showScene('endingClinical')">
 Continue
 </button>
-
 </div>
+
+    
+    
+    
+    
 <div id="planB" class="scene">
 
 <div class="quote">
@@ -1404,6 +1413,35 @@ Continue
 </button>
 
 </div>
+
+
+    
+    
+    
+    
+<div id="planC" class="scene">
+
+<div class="quote">
+
+Mr. Ahmed identifies one change he feels ready to make immediately and another he would like to work toward over time.
+
+The resulting plan feels practical and achievable.
+
+</div>
+
+<button onclick="showScene('endingPartnership')">
+Continue
+</button>
+
+</div>
+
+    
+    
+    
+    
+    
+    
+    
 <div id="endingClinical" class="scene">
 
 <div class="card">
@@ -1446,6 +1484,10 @@ Return to Case Library
 </button>
 
 </div>
+
+    
+    
+    
 <div id="endingShared" class="scene">
 
 <div class="card">
@@ -1494,6 +1536,9 @@ Return to Case Library
 </button>
 
 </div>
+
+    
+    
 <div id="endingPartnership" class="scene">
 
 <div class="card">
