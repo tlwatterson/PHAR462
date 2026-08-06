@@ -112,80 +112,55 @@ button:hover {
 </style>
 
 <script>
-
 let explored = {
-
-    beliefs:false,
-    goals:false,
-    fears:false,
-    treatments:false,
-    support:false,
-    communication:false
-
+  beliefs:false,
+  goals:false,
+  fears:false,
+  treatments:false,
+  support:false,
+  communication:false
 };
 
 function showScene(id){
-
-    document.querySelectorAll(".scene")
-    .forEach(scene => scene.classList.remove("active"));
-
-    document.getElementById(id)
-    .classList.add("active");
-
-    updateProgress();
-
+  document.querySelectorAll(".scene").forEach(scene => scene.classList.remove("active"));
+  const target = document.getElementById(id);
+  if (!target) {
+    console.warn(`Scene not found: ${id}`);
+    return;
+  }
+  target.classList.add("active");
+  updateProgress();
 }
 
 function unlock(area){
-
-    explored[area] = true;
-
-    updateProgress();
-
+  if (area in explored) explored[area] = true;
+  updateProgress();
 }
 
 function updateProgress(){
+  const p = document.getElementById("progress");
+  if(!p) return;
 
-    const p = document.getElementById("progress");
+  const entries = [
+    ["Beliefs", explored.beliefs],
+    ["Goals", explored.goals],
+    ["Fears", explored.fears],
+    ["Treatments", explored.treatments],
+    ["Support", explored.support],
+    ["Communication", explored.communication]
+  ];
 
-    if(!p) return;
+  const done = entries.filter(([,v]) => v).length;
 
-    p.innerHTML = `
-    ...
-    `;
+  p.innerHTML = `
+    <strong>Progress: ${done}/${entries.length} explored</strong>
+    <ul>
+      ${entries.map(([label, done]) =>
+        `<li class="${done ? "complete" : "incomplete"}">${done ? "✓" : "○"} ${label}</li>`
+      ).join("")}
+    </ul>
+  `;
 }
-
-
-function determineEnding(){
-
-    let score = 0;
-
-    if(explored.beliefs) score++;
-    if(explored.goals) score++;
-    if(explored.fears) score++;
-    if(explored.treatments) score++;
-    if(explored.support) score++;
-    if(explored.communication) score++;
-
-    if(score <= 2){
-        showScene("endingClinical");
-    }
-    else if(score <= 4){
-        showScene("endingShared");
-    }
-    else{
-        showScene("endingPartnership");
-    }
-
-}
-
-
-window.onload = function(){
-
-    updateProgress();
-
-}
-
 </script>
 </head>
 
