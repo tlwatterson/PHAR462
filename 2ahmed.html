@@ -1221,31 +1221,6 @@ Continue Exploring
 </button>
 
 </div>
--------------------------------------------------
-function determineEnding(){
-
-    let score = 0;
-
-    if(explored.beliefs) score++;
-    if(explored.goals) score++;
-    if(explored.fears) score++;
-    if(explored.treatments) score++;
-    if(explored.support) score++;
-    if(explored.communication) score++;
-
-    if(score <= 2){
-        showScene("endingClinical");
-    }
-    else if(score <= 4){
-        showScene("endingShared");
-    }
-    else{
-        showScene("endingPartnership");
-    }
-
-}
-
----------------------------------
 <!-- ===================================================== -->
 <!-- COMMUNICATION -->
 <!-- ===================================================== -->
