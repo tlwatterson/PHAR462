@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Understanding Mr. Ahmed</title>
+
+<style>
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: white;
+    color: #222;
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    line-height: 1.5;
+}
+
+h1 {
+    color: #1565c0;
+    border-bottom: 3px solid #1565c0;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #1565c0;
+}
+
+.scene {
+    display:none;
+}
+
+.active {
+    display:block;
+}
+
+.card {
+    background:#f4f8ff;
+    border-left:5px solid #1565c0;
+    padding:1rem;
+    border-radius:8px;
+    margin:1rem 0;
+}
+
+.quote {
+    background:#eef6ff;
+    border-left:4px solid #1565c0;
+    padding:1rem;
+    border-radius:8px;
+    margin:1rem 0;
+    font-style:italic;
+}
+
+.insight {
+    background:#f7f7f7;
+    border-left:4px solid #90caf9;
+    padding:1rem;
+    border-radius:8px;
+    margin-top:1rem;
+}
+
+.question {
+    background:#eef6ff;
+    padding:1rem;
+    border-radius:8px;
+    margin-top:1rem;
+    font-weight:600;
+}
+
+button {
+
+    display:block;
+    width:100%;
+    text-align:left;
+
+    margin:10px 0;
+    padding:12px;
+
+    background:white;
+
+    border:1px solid #c7dfff;
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+}
+
+button:hover {
+    background:#e8f1ff;
+}
+
+.progress {
+
+    background:#f4f8ff;
+    border-radius:8px;
+
+    padding:1rem;
+    margin-bottom:2rem;
+}
+
+.complete {
+    color:green;
+}
+
+.incomplete {
+    color:#888;
+}
+
+</style>
+
+<script>
+
+let explored = {
+
+    beliefs:false,
+    goals:false,
+    fears:false,
+    treatments:false,
+    support:false,
+    communication:false
+
+};
+
+function showScene(id){
+
+    document.querySelectorAll(".scene")
+    .forEach(scene => scene.classList.remove("active"));
+
+    document.getElementById(id)
+    .classList.add("active");
+
+    updateProgress();
+
+}
+
+function unlock(area){
+
+    explored[area] = true;
+
+    updateProgress();
+
+}
+
+function updateProgress(){
+
+    const p = document.getElementById("progress");
+
+    if(!p) return;
+
+    p.innerHTML = `
+    ...
+    `;
+}
+
+
+function determineEnding(){
+
+    let score = 0;
+
+    if(explored.beliefs) score++;
+    if(explored.goals) score++;
+    if(explored.fears) score++;
+    if(explored.treatments) score++;
+    if(explored.support) score++;
+    if(explored.communication) score++;
+
+    if(score <= 2){
+        showScene("endingClinical");
+    }
+    else if(score <= 4){
+        showScene("endingShared");
+    }
+    else{
+        showScene("endingPartnership");
+    }
+
+}
+
+
+window.onload = function(){
+
+    updateProgress();
+
+}
+
+</script>
+</head>
+
+<body>
+
+<h1>Understanding Mr. Ahmed</h1>
+
+<div id="progress" class="progress"></div>
+
+
+
+
+
+
+
+<!-- ===================================================== -->
+<!-- START -->
+<!-- ===================================================== -->
+
+<div id="start" class="scene active">
+
+<div class="card">
+
+You are a pharmacist in an ambulatory care clinic.
+
+Today's appointment is with Mr. Ahmed, a 60-year-old person living with type 2 diabetes.
+
+Recent chart information shows:
+
+<ul>
+<li>A1C 9.8%</li>
+<li>Several delayed refills</li>
+<li>Missed follow-up appointment</li>
+</ul>
+
+A note in the chart states:
+
+<br>
+
+<i>
+Patient may not be following treatment recommendations.
+</i>
+
+</div>
+
+<div class="quote">
+
+"I've been trying to manage things in my own way."
+
+</div>
+
+<div class="question">
+
+What would you like to learn first?
+
+</div>
+
+<button onclick="unlock('beliefs'); showScene('beliefsIntro')">
+Tell me more about what you mean by "your own way."
+</button>
+
+<button onclick="unlock('goals'); showScene('goalsIntro')">
+Before we discuss treatment, what is most important to you right now?
+</button>
+
+<button onclick="showScene('mainMenu')">
+I'd like to explore several topics.
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- MAIN MENU -->
+<!-- ===================================================== -->
+
+<div id="mainMenu" class="scene">
+
+<h2>Choose a Topic</h2>
+
+<div class="question">
+
+What would you like to explore next?
+
+</div>
+
+<button onclick="unlock('beliefs'); showScene('beliefsIntro')">
+Beliefs About Illness
+</button>
+
+<button onclick="unlock('goals'); showScene('goalsIntro')">
+Goals & Priorities
+</button>
+
+<button onclick="unlock('fears'); showScene('fearsIntro')">
+Fears & Concerns
+</button>
+
+<button onclick="unlock('treatments'); showScene('treatmentsIntro')">
+Treatment Practices
+</button>
+
+<button onclick="unlock('support'); showScene('supportIntro')">
+Support Systems
+</button>
+
+<button onclick="unlock('communication'); showScene('communicationIntro')">
+Communication & Partnership
+</button>
+
+<button onclick="showScene('buildPlan')">
+Build a Care Plan
+</button>
+
+
+</div>
+
+<!-- ===================================================== -->
+<!-- BELIEFS INTRO -->
+<!-- ===================================================== -->
+
+<div id="beliefsIntro" class="scene">
+
+<div class="quote">
+
+"I know everyone calls it diabetes."
+
+<br><br>
+
+"But I don't really think about it that way."
+
+<br><br>
+
+"To me, it feels like my body is out of balance."
+
+</div>
+
+<div class="question">
+
+How do you respond?
+
+</div>
+
+<button onclick="showScene('beliefsA')">
+Can you tell me more about what "out of balance" means?
+</button>
+
+<button onclick="showScene('beliefsB')">
+Can I share how healthcare providers usually think about diabetes?
+</button>
+
+<button onclick="showScene('beliefsC')">
+Do you think thinking about diabetes this way affects how you manage it?
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- BELIEFS A -->
+<!-- ===================================================== -->
+
+<div id="beliefsA" class="scene">
+
+<div class="card">
+
+Mr. Ahmed pauses.
+
+</div>
+
+<div class="quote">
+
+"A few years ago I felt very different."
+
+<br><br>
+
+"I had more energy, slept better, and felt more in control."
+
+<br><br>
+
+"Then life became busier."
+
+<br><br>
+
+"When the diabetes came, it felt like the result of everything else."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Personal understanding of illness</li>
+<li>Life experiences affecting health</li>
+<li>Context surrounding the diagnosis</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- BELIEFS B -->
+<!-- ===================================================== -->
+
+<div id="beliefsB" class="scene">
+
+<div class="card">
+
+You briefly discuss the medical understanding of diabetes.
+
+</div>
+
+<div class="quote">
+
+"I don't think we're disagreeing."
+
+<br><br>
+
+"You're talking about what's happening in my body."
+
+<br><br>
+
+"I'm talking about what's happening in my life."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Patients may hold multiple perspectives simultaneously</li>
+<li>Shared understanding can strengthen partnerships</li>
+<li>Medical and personal explanations can coexist</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- BELIEFS C -->
+<!-- ===================================================== -->
+
+<div id="beliefsC" class="scene">
+
+<div class="quote">
+
+"If I think stress contributed to this condition, then reducing stress becomes part of treatment."
+
+<br><br>
+
+"If I think family responsibilities affect my health, I need to account for that too."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Beliefs influence health behaviors</li>
+<li>Patients interpret recommendations through personal frameworks</li>
+<li>Understanding beliefs supports patient-centered planning</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- GOALS INTRO -->
+<!-- ===================================================== -->
+
+<div id="goalsIntro" class="scene">
+
+<div class="quote">
+
+"Nobody usually asks me that."
+
+<br><br>
+
+"I want enough energy to spend time with my grandchildren."
+
+</div>
+
+<div class="question">
+
+What would you like to ask?
+
+</div>
+
+<button onclick="showScene('goalsA')">
+What activities are most important to you?
+</button>
+
+<button onclick="showScene('goalsB')">
+What would successful treatment look like to you?
+</button>
+
+<button onclick="showScene('goalsC')">
+How does your family fit into your goals?
+</button>
+
+</div>
+
+<!-- GOALS A -->
+
+<div id="goalsA" class="scene">
+
+<div class="quote">
+
+"I don't need perfection."
+
+<br><br>
+
+"I just want enough energy to keep showing up."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Values driving healthcare decisions</li>
+<li>Meaningful daily activities</li>
+<li>Personal motivation for change</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+<!-- ===================================================== -->
+<!-- GOALS B -->
+<!-- ===================================================== -->
+
+<div id="goalsB" class="scene">
+
+<div class="quote">
+
+"Honestly?"
+
+<br><br>
+
+"I'd like to wake up with more energy."
+
+<br><br>
+
+"I'd like to spend less time worrying about my health."
+
+<br><br>
+
+"I'd like to feel like diabetes isn't making every decision for me."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Patient-defined treatment success</li>
+<li>Quality of life priorities</li>
+<li>Opportunities for shared goal setting</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- GOALS C -->
+<!-- ===================================================== -->
+
+<div id="goalsC" class="scene">
+
+<div class="quote">
+
+"My family is involved in almost everything."
+
+<br><br>
+
+"I spend a lot of time helping other people."
+
+<br><br>
+
+"Sometimes I'm better at taking care of everyone else than I am at taking care of myself."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Family influences healthcare decisions</li>
+<li>Sources of motivation</li>
+<li>Opportunities for family-centered care</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- DAILY EXPERIENCE -->
+<!-- ===================================================== -->
+
+<div id="dailyExperience" class="scene">
+
+<div class="quote">
+
+"Managing diabetes can feel like a second job."
+
+</div>
+
+<div class="question">
+
+What would you like to explore?
+
+</div>
+
+<button onclick="showScene('dailyHard')">
+What is the hardest part?
+</button>
+
+<button onclick="showScene('dailyStrengths')">
+What helps you stay on track?
+</button>
+
+<button onclick="unlock('fears'); showScene('fearsIntro')">
+What worries you most?
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- DAILY HARD -->
+<!-- ===================================================== -->
+
+<div id="dailyHard" class="scene">
+
+<div class="quote">
+
+"The hardest part is balancing everything."
+
+<br><br>
+
+"Work, family, appointments, meals..."
+
+<br><br>
+
+"It's not that I don't know what I should do."
+
+<br><br>
+
+"It's that life gets complicated."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Competing priorities</li>
+<li>Daily barriers</li>
+<li>The realities of chronic disease management</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- DAILY STRENGTHS -->
+<!-- ===================================================== -->
+
+<div id="dailyStrengths" class="scene">
+
+<div class="quote">
+
+"I try not to focus only on what isn't working."
+
+<br><br>
+
+"I go for walks."
+
+<br><br>
+
+"I keep a notebook when things are going well."
+
+<br><br>
+
+"I try to build on small successes."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Patient strengths</li>
+<li>Resilience</li>
+<li>Effective coping strategies</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- FEARS INTRO -->
+<!-- ===================================================== -->
+
+<div id="fearsIntro" class="scene">
+
+<div class="quote">
+
+"What scares me the most?"
+
+<br><br>
+
+"Losing my independence."
+
+</div>
+
+<div class="question">
+
+How do you respond?
+
+</div>
+
+<button onclick="showScene('fearA')">
+What does independence mean to you?
+</button>
+
+<button onclick="showScene('fearB')">
+What concerns you most about the future?
+</button>
+
+<button onclick="showScene('fearC')">
+How do those concerns affect treatment decisions?
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- FEAR A -->
+<!-- ===================================================== -->
+
+<div id="fearA" class="scene">
+
+<div class="quote">
+
+"Being able to take care of myself."
+
+<br><br>
+
+"Driving where I want."
+
+<br><br>
+
+"Helping others."
+
+<br><br>
+
+"Making my own decisions."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>The meaning behind the patient's concerns</li>
+<li>Values that influence healthcare decisions</li>
+<li>Why health outcomes matter to this patient</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- FEAR B -->
+<!-- ===================================================== -->
+
+<div id="fearB" class="scene">
+
+<div class="quote">
+
+"I think it's the uncertainty."
+
+<br><br>
+
+"I don't know what life will look like five or ten years from now."
+
+<br><br>
+
+"That worries me."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Long-term concerns</li>
+<li>The emotional impact of chronic illness</li>
+<li>Future-oriented thinking</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- FEAR C -->
+<!-- ===================================================== -->
+
+<div id="fearC" class="scene">
+
+<div class="quote">
+
+"Sometimes fear motivates me."
+
+<br><br>
+
+"Sometimes it makes me avoid thinking about diabetes completely."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Emotions affect health behaviors</li>
+<li>Fear can both motivate and discourage action</li>
+<li>Behavior change is complex</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- TREATMENTS INTRO -->
+<!-- ===================================================== -->
+
+<div id="treatmentsIntro" class="scene">
+
+<div class="quote">
+
+"Oh, I use more than medications."
+
+<br><br>
+
+"I walk."
+
+<br><br>
+
+"I pray."
+
+<br><br>
+
+"I drink herbal tea."
+
+</div>
+
+<div class="question">
+
+What would you like to discuss?
+
+</div>
+
+<button onclick="showScene('treatmentA')">
+Which helps the most?
+</button>
+
+<button onclick="showScene('treatmentB')">
+How do these fit with medications?
+</button>
+
+<button onclick="showScene('treatmentC')">
+Why are these important to you?
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- TREATMENT A -->
+<!-- ===================================================== -->
+
+<div id="treatmentA" class="scene">
+
+<div class="quote">
+
+"Walking."
+
+<br><br>
+
+"I don't know if it's the exercise or the quiet time."
+
+<br><br>
+
+"But I always feel better afterwards."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Existing successful health behaviors</li>
+<li>Patient strengths</li>
+<li>Potential foundations for future goals</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- TREATMENT B -->
+<!-- ===================================================== -->
+
+<div id="treatmentB" class="scene">
+
+<div class="quote">
+
+"Actually, nobody has ever asked me that."
+
+<br><br>
+
+"I've always thought of all of them as part of the same plan."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Patients often integrate multiple health practices</li>
+<li>Healthcare decisions occur within larger systems</li>
+<li>Collaboration is often more productive than dismissal</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- TREATMENT C -->
+<!-- ===================================================== -->
+
+<div id="treatmentC" class="scene">
+
+<div class="quote">
+
+"Some of these things come from my family."
+
+<br><br>
+
+"Some remind me that I can still play an active role in my health."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Personal meaning behind health behaviors</li>
+<li>The role of traditions and identity</li>
+<li>Why patients choose certain health practices</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- SUPPORT INTRO -->
+<!-- ===================================================== -->
+
+<div id="supportIntro" class="scene">
+
+<div class="quote">
+
+"More people support me than I probably realize."
+
+</div>
+
+<div class="question">
+
+Who would you like to learn about?
+
+</div>
+
+<button onclick="showScene('supportA')">
+Family
+</button>
+
+<button onclick="showScene('supportB')">
+Community
+</button>
+
+<button onclick="showScene('supportC')">
+Faith
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- SUPPORT A -->
+<!-- ===================================================== -->
+
+<div id="supportA" class="scene">
+
+<div class="quote">
+
+"My family checks on me all the time."
+
+<br><br>
+
+"Sometimes they're the reason I stay motivated."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Family support systems</li>
+<li>Sources of accountability</li>
+<li>Potential partners in care</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- SUPPORT B -->
+<!-- ===================================================== -->
+
+<div id="supportB" class="scene">
+
+<div class="quote">
+
+"Sometimes support comes from people you wouldn't expect."
+
+<br><br>
+
+"Friends, neighbors, people in the community."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Community resources</li>
+<li>Social support networks</li>
+<li>Strengths beyond immediate family</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- SUPPORT C -->
+<!-- ===================================================== -->
+
+<div class="scene" id="supportC">
+
+<div class="question">
+
+What would you like to ask about faith?
+
+</div>
+
+<button onclick="showScene('faithA')">
+How does it help day-to-day?
+</button>
+
+<button onclick="showScene('faithB')">
+Should we consider that in the care plan?
+</button>
+
+<button onclick="showScene('faithC')">
+Thank you for sharing that.
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- FAITH A -->
+<!-- ===================================================== -->
+
+<div id="faithA" class="scene">
+
+<div class="quote">
+
+"My faith helps me stay hopeful."
+
+<br><br>
+
+"It gives me perspective during difficult times."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Sources of resilience</li>
+<li>Spiritual coping mechanisms</li>
+<li>Meaning and hope as resources</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- FAITH B -->
+<!-- ===================================================== -->
+
+<div id="faithB" class="scene">
+
+<div class="quote">
+
+"I think it should be considered."
+
+<br><br>
+
+"It's part of how I make decisions."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Faith can affect healthcare preferences</li>
+<li>Culturally responsive care requires understanding these influences</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- FAITH C -->
+<!-- ===================================================== -->
+
+<div id="faithC" class="scene">
+
+<div class="quote">
+
+"Thank you."
+
+<br><br>
+
+"I appreciate you asking."
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Validation builds trust</li>
+<li>Respect often encourages greater openness</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+-------------------------------------------------
+function determineEnding(){
+
+    let score = 0;
+
+    if(explored.beliefs) score++;
+    if(explored.goals) score++;
+    if(explored.fears) score++;
+    if(explored.treatments) score++;
+    if(explored.support) score++;
+    if(explored.communication) score++;
+
+    if(score <= 2){
+        showScene("endingClinical");
+    }
+    else if(score <= 4){
+        showScene("endingShared");
+    }
+    else{
+        showScene("endingPartnership");
+    }
+
+}
+
+---------------------------------
+<!-- ===================================================== -->
+<!-- COMMUNICATION -->
+<!-- ===================================================== -->
+
+<div id="communicationIntro" class="scene">
+
+<div class="card">
+
+As the visit continues, you realize that you've spent several minutes discussing recommendations without asking for Mr. Ahmed's perspective.
+
+</div>
+
+<div class="question">
+
+How would you like to respond?
+
+</div>
+
+<button onclick="showScene('commA')">
+Continue discussing treatment recommendations
+</button>
+
+<button onclick="showScene('commB')">
+I've been talking quite a bit. What questions do you have?
+</button>
+
+<button onclick="showScene('commC')">
+I may be focused on my agenda. Is there something important we haven't discussed?
+</button>
+
+</div>
+<div id="commA" class="scene">
+
+<div class="quote">
+
+Mr. Ahmed listens politely and thanks you for the information.
+
+The encounter remains respectful and informative.
+
+However, much of the conversation follows the healthcare professional's agenda.
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Information sharing is valuable</li>
+<li>Patient perspectives may remain unexplored</li>
+<li>Provider-centered encounters can limit discovery</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+<div id="commB" class="scene">
+
+<div class="quote">
+
+"Actually, I do have a few questions."
+
+<br><br>
+
+Several concerns emerge that had not been mentioned earlier in the visit.
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Patients often have unspoken concerns</li>
+<li>Inviting participation improves communication</li>
+<li>Questions reduce power imbalances</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+<div id="commC" class="scene">
+
+<div class="quote">
+
+"I'm glad you asked."
+
+<br><br>
+
+Mr. Ahmed begins discussing transportation challenges, appointment scheduling, and balancing family responsibilities.
+
+Several concerns would likely have remained hidden without the invitation.
+
+</div>
+
+<div class="insight">
+
+<b>You learned:</b>
+
+<ul>
+<li>Self-awareness improves communication</li>
+<li>Patients often have hidden concerns</li>
+<li>Recognizing power dynamics supports cultural humility</li>
+</ul>
+
+</div>
+
+<button onclick="showScene('mainMenu')">
+Continue Exploring
+</button>
+
+</div>
+<!-- ===================================================== -->
+<!-- BUILD CARE PLAN -->
+<!-- ===================================================== -->
+
+<div id="buildPlan" class="scene">
+
+<div class="card">
+
+You have spent time learning about Mr. Ahmed's experiences, priorities, concerns, and perspectives.
+
+Now it is time to discuss next steps.
+
+</div>
+
+<div class="question">
+
+How would you like to proceed?
+
+</div>
+
+<button onclick="showScene('planA')">
+Provide a list of recommendations
+</button>
+
+<button onclick="showScene('planB')">
+Which of these changes feels most realistic right now?
+</button>
+
+<button onclick="determineEnding()">
+Given everything we've discussed, where would you like to start?
+</button>
+
+</div>
+<div id="planA" class="scene">
+
+<div class="quote">
+
+You review multiple recommendations and discuss treatment options.
+
+The plan is medically sound and clearly communicated.
+
+</div>
+
+<button onclick="showScene('endingClinical')">
+Continue
+</button>
+
+</div>
+<div id="planB" class="scene">
+
+<div class="quote">
+
+Mr. Ahmed identifies one change he feels ready to make immediately and another he would like to work toward over time.
+
+The resulting plan feels practical and achievable.
+
+</div>
+
+<button onclick="showScene('endingShared')">
+Continue
+</button>
+
+</div>
+<div id="endingClinical" class="scene">
+
+<div class="card">
+
+<h2>Clinical Understanding</h2>
+
+You gathered important clinical information and developed reasonable recommendations.
+
+The resulting care plan is medically appropriate.
+
+However, much of the patient's lived experience remained unexplored.
+
+The encounter focused primarily on the healthcare professional's perspective.
+
+</div>
+
+<div class="reflection">
+
+<h3>Reflection Questions</h3>
+
+<ol>
+<li>What additional questions might have improved your understanding of Mr. Ahmed?</li>
+
+<li>What information was still missing from the final care plan?</li>
+
+<li>How can healthcare professionals balance clinical priorities and patient priorities?</li>
+
+</ol>
+
+</div>
+
+<div class="quote">
+
+Completion Code: LO1-C
+
+</div>
+
+<button onclick="window.location.href='index.html'">
+Return to Case Library
+</button>
+
+</div>
+<div id="endingShared" class="scene">
+
+<div class="card">
+
+<h2>Shared Understanding</h2>
+
+You explored several aspects of Mr. Ahmed's experience living with diabetes.
+
+Your recommendations were influenced by some of the patient's goals, concerns, and perspectives.
+
+The encounter felt collaborative and respectful.
+
+</div>
+
+<div class="quote">
+
+"I appreciate you taking the time to listen."
+
+</div>
+
+<div class="reflection">
+
+<h3>Reflection Questions</h3>
+
+<ol>
+<li>Which insight most influenced your recommendations?</li>
+
+<li>How did understanding the patient's perspective change the conversation?</li>
+
+<li>What additional information would strengthen the care plan?</li>
+
+<li>What role does curiosity play in cultural humility?</li>
+
+</ol>
+
+</div>
+
+<div class="quote">
+
+Completion Code: LO1-S
+
+</div>
+
+<button onclick="window.location.href='index.html'">
+Return to Case Library
+</button>
+
+</div>
+<div id="endingPartnership" class="scene">
+
+<div class="card">
+
+<h2>Collaborative Partnership</h2>
+
+Over the course of the visit, you explored:
+
+<ul>
+<li>Beliefs about illness</li>
+<li>Goals and priorities</li>
+<li>Fears and concerns</li>
+<li>Support systems</li>
+<li>Treatment practices</li>
+<li>Communication preferences</li>
+</ul>
+
+The final care plan reflects both clinical expertise and the patient's lived experience.
+
+</div>
+
+<div class="quote">
+
+"I feel like you understand where I'm coming from."
+
+<br><br>
+
+"Usually I leave appointments with instructions."
+
+<br><br>
+
+"Today I feel like I left with a plan."
+
+</div>
+
+<div class="reflection">
+
+<h3>Reflection Questions</h3>
+
+<ol>
+<li>Which question generated the most meaningful information?</li>
+
+<li>What did you learn that was not visible in the medical record?</li>
+
+<li>How did cultural humility influence the encounter?</li>
+
+<li>Where did power dynamics appear during the visit?</li>
+
+<li>How did the final care plan reflect Mr. Ahmed's priorities?</li>
+
+</ol>
+
+</div>
+
+<div class="quote">
+
+Completion Code: LO1-P
+
+</div>
+
+<button onclick="window.location.href='index.html'">
+Return to Case Library
+</button>
+
+</div>
+</body>
+</html>
