@@ -150,16 +150,6 @@ function updateProgress(){
     ["Communication", explored.communication]
   ];
 
-  const done = entries.filter(([,v]) => v).length;
-
-  p.innerHTML = `
-    <strong>Progress: ${done}/${entries.length} explored</strong>
-    <ul>
-      ${entries.map(([label, done]) =>
-        `<li class="${done ? "complete" : "incomplete"}">${done ? "✓" : "○"} ${label}</li>`
-      ).join("")}
-    </ul>
-  `;
 }
 </script>
 </head>
