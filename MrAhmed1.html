@@ -12,6 +12,7 @@
 <tw-storydata name="MrAhmed1" startnode="1" creator="Twine" creator-version="2.12.0" format="Harlowe" format-version="3.3.9" ifid="EFB94B10-FC62-4CAC-8EB7-F869EBCCB061" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story{
   background-color: white;
   color: black;
+  font-family: sans-serif;
   
 }
 
@@ -78,10 +79,10 @@ He describes increasing stress, disrupted sleep, family obligations, and feeling
 
 What would you like to explore next?
 
-[[&quot;What is most important to you right now?&quot;-&gt;Goals]]
-[[&quot;What worries you most about your condition?&quot;-&gt;Fears]]
-[[&quot;Aside from medications, are there things you do to manage your health?&quot;-&gt;Treatments]]
-[[&quot;Who helps support you when managing your health?&quot;-&gt;Support]]</tw-passagedata><tw-passagedata pid="7" name="Beliefs B" tags="" position="400,650" size="100,100">You explain how healthcare providers typically understand diabetes, including blood sugar regulation and long-term complications. Mr. Ahmed listens attentively.
+[[Goals and Priorities-&gt;Goals]]
+[[Fears and Concerns-&gt;Fears]]
+[[Treatment Practices-&gt;Treatments]]
+[[Support Systems-&gt;Support]]</tw-passagedata><tw-passagedata pid="7" name="Beliefs B" tags="" position="400,650" size="100,100">You explain how healthcare providers typically understand diabetes, including blood sugar regulation and long-term complications. Mr. Ahmed listens attentively.
 
 When you finish, he nods.
 
@@ -104,6 +105,8 @@ For several minutes, the two of you compare perspectives. Neither perspective re
 He explains that healthcare recommendations make more sense when they connect to what he believes is contributing to the condition. 
 
 [[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="9" name="Fears" tags="" position="150,750" size="100,100">(set: $fears to true)
+You ask about concerns.
+
 Mr. Ahmed pauses.
 
 &#39;&#39;&quot;Losing my independence.&quot;
@@ -124,14 +127,17 @@ How do you continue?
 
 [[&quot;Which of these helps the most?&quot;-&gt;Treatment A]]
 [[&quot;How do these fit with your medications?&quot;-&gt;Treatment B]]
-[[&quot;Why are these practices important to you?&quot;-&gt;Treatment C]]</tw-passagedata><tw-passagedata pid="11" name="Support" tags="" position="600,900" size="100,100">(set: $support to true)
+[[&quot;Why are these practices important to you?&quot;-&gt;Treatment C]]</tw-passagedata><tw-passagedata pid="11" name="Support" tags="" position="675,900" size="100,100">(set: $support to true)
+
+You ask:
+
+&#39;&#39;&quot;Who helps support you when managing your health?&quot;&#39;&#39;
 
 Mr. Ahmed smiles.
 
 &#39;&#39;&#39;&quot;More people than I probably realize.&quot;&#39;&#39;
 
 Choose a direction.
-
 [[&quot;Tell me about your family.&quot;-&gt;Support A]]
 [[&quot;Tell me about your community.&quot;-&gt;Support B]]
 [[&quot;Does faith play a role?&quot;-&gt;Faith]]</tw-passagedata><tw-passagedata pid="12" name="Goals A" tags="" position="675,700" size="100,100">Mr. Ahmed pulls out several photos on his phone. For several minutes he talks about family gatherings, soccer games, and spending time with his grandchildren.
@@ -150,6 +156,8 @@ He pauses.
 &#39;&#39;&quot;I know my numbers matter.&quot;
 &quot;But what I really want is to keep living my life.&quot;&#39;&#39;
 
+As you listen, you notice that his definition of success focuses on daily life rather than laboratory values.
+
 [[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="14" name="Goals C" tags="" position="1000,700" size="100,100">Mr. Ahmed laughs softly.
 
 &#39;&#39;&quot;My family is involved in almost everything.&quot;&#39;&#39;
@@ -158,6 +166,8 @@ He describes helping adult children, spending time with grandchildren, and suppo
 
 &#39;&#39;&quot;Sometimes I take care of everyone else&#39;s needs before my own.&quot;&#39;&#39;
 
+As the conversation continues, you begin to see how family influences both motivation and decision-making.
+
 [[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="15" name="Main Menu" tags="" position="850,900" size="100,100">You have learned a little more about Mr. Ahmed&#39;s experience.
 
 What would you like to explore next?
@@ -165,14 +175,14 @@ What would you like to explore next?
 (if: $goals is false)[[[&quot;What is most important to you right now?&quot;-&gt;Goals]]]
 (if: $fears is false)[[[&quot;What worries you most about your condition?&quot;-&gt;Fears]]]
 (if: $treatments is false)[[[&quot;Aside from medications, are there things you do to manage your health?&quot;-&gt;Treatments]]]
-(if: $support is false)[[[&quot;Who helps support you when managing your health?&quot;-&gt;Support]]]
-(if: $communication is false)[[[Silence-&gt;Communication]]]
+(if: $support is false)[[[Support Systems-&gt;Support]]]
+(if: $communication is false)[[[Communication and Partnership-&gt;Communication]]]
 [[Build a Care Plan-&gt;Build Plan]]</tw-passagedata><tw-passagedata pid="16" name="Fear A" tags="" position="0,750" size="100,100">Mr. Ahmed immediately responds.
 
 &#39;&#39;&quot;Independence means being able to take care of myself.&quot;
 &quot;It means driving where I want, helping others, and making my own decisions.&quot;
 &#39;&#39;
-He describes relatives who became increasingly dependent on others as their health declined. Seeing those experiences firsthand shaped his fears. 
+He describes relatives who became increasingly dependent on others as their health declined. Seeing those experiences firsthand shaped his fears. You realize that independence represents much more than physical ability. It represents dignity.
 
 [[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="17" name="Fear B" tags="" position="25,900" size="100,100">Mr. Ahmed looks thoughtful.
 
@@ -189,7 +199,7 @@ He discusses concerns about complications but also worries about how changes in 
 He describes periods where concern about his health helped him make positive changes. Other times, worries felt overwhelming. 
 
 
-[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="19" name="Treatment A" tags="" position="150,1225" size="100,100">Mr. Ahmed smiles.
+[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="19" name="Treatment A" tags="" position="150,1125" size="100,100">Mr. Ahmed smiles.
 
 &#39;&#39;&quot;Probably walking.&quot;&#39;&#39;
 
@@ -198,29 +208,34 @@ He describes taking evening walks after dinner.
 &#39;&#39;&quot;I don&#39;t know if it&#39;s the exercise, the fresh air, or just getting some time to think.&quot;
 &quot;But I almost always feel better afterward.&quot;&#39;&#39;
 
-[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="20" name="Treatment B" tags="" position="275,1225" size="100,100">Mr. Ahmed pauses.
+[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="20" name="Treatment B" tags="" position="275,1125" size="100,100">Mr. Ahmed pauses.
 
 &#39;&#39;&quot;You know, nobody has really asked me that before.&quot;&#39;&#39;
 
 Together you discuss medications, dietary changes, physical activity, spiritual practices, and daily routines. Rather than competing approaches, the conversation focuses on how these strategies can complement one another.
 
-[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="21" name="Treatment C" tags="" position="375,1225" size="100,100">Mr. Ahmed smiles.
+[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="21" name="Treatment C" tags="" position="400,1125" size="100,100">Mr. Ahmed smiles.
 
 &#39;&#39;&quot;Some of these are things my family has always done.&quot;
 &quot;Some remind me that I still have some control over my health.&quot;&#39;&#39;
 
 The practices seem meaningful beyond any measurable clinical effects. They help him feel connected to his values, routines, and identity.
 
-[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="22" name="Support A" tags="" position="550,1100" size="100,100">Mr. Ahmed immediately begins talking about family.
+[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="22" name="Support A" tags="" position="525,1100" size="100,100">Mr. Ahmed immediately begins talking about family.
 
 &#39;&#39;&quot;My family checks on me more than I probably deserve.&quot;&#39;&#39;
 
 He laughs. Several children and grandchildren call regularly, and relatives often assist during difficult periods. While health decisions are ultimately his own, family provides encouragement, accountability, and practical support.
 
-[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="23" name="Support B" tags="" position="675,1100" size="100,100">Mr. Ahmed describes neighbors, friends, and community groups that have become important over the years. He talks about people who check in, share advice, and provide encouragement.
+[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="23" name="Support B" tags="" position="700,1100" size="100,100">Mr. Ahmed describes neighbors, friends, and community groups that have become important over the years. He talks about people who check in, share advice, and provide encouragement.
+&lt;blockquote&gt;&quot;Sometimes support comes from people you don&#39;t expect.&quot;&lt;/blockquote&gt;
 
-&#39;&#39;&quot;Sometimes support comes from people you don&#39;t expect.&quot;
-&#39;&#39;
+The discussion broadens your understanding of what support systems can look like.
+
+You learned:
+* Community-based support
+* Social connections as health resources
+
 [[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="24" name="Faith" tags="" position="875,1100" size="100,100">Mr. Ahmed nods.
 
 &#39;&#39;&quot;My faith helps me stay hopeful.&quot;&#39;&#39;
@@ -252,10 +267,9 @@ The acknowledgment is brief but meaningful. The conversation continues, but the 
 Later in the visit you realize that you have been speaking for several minutes without asking for the patient&#39;s perspective.
 
 What do you do?
-
 [[Continue explaining treatment recommendations.-&gt;Comm A]]
-[[&quot;I&#39;ve been talking quite a bit. What questions do you have?&quot;-&gt;Comm B]]
-[[&quot;I realize I may be focused on my agenda. Is there something important we haven&#39;t discussed?&quot;-&gt;Comm C]]</tw-passagedata><tw-passagedata pid="29" name="Build Plan" tags="" position="1375,1000" size="100,100">You begin discussing next steps with Mr. Ahmed.
+[[I&#39;ve been talking quite a bit. What questions do you have?-&gt;Comm B]]
+[[I realize I may be focused on my agenda. Is there something important we haven&#39;t discussed?-&gt;Comm C]]</tw-passagedata><tw-passagedata pid="29" name="Build Plan" tags="" position="1375,1000" size="100,100">You begin discussing next steps with Mr. Ahmed.
 
 (set: $score to 0)
 (if: $beliefs)[(set: $score to $score + 1)]
@@ -266,19 +280,37 @@ What do you do?
 (if: $communication)[(set: $score to $score + 1)]
 (if: $score &lt;= 2)[[[Continue -&gt;EndingClinical]]]
 (else-if: $score &lt;= 4)[[[Continue-&gt;EndingShared]]]
-(else:)[[[Continue-&gt;EndingPartnership]]]</tw-passagedata><tw-passagedata pid="30" name="Comm A" tags="" position="1175,1450" size="100,100">You continue reviewing recommendations and explaining potential treatment options. Mr. Ahmed listens attentively and occasionally nods. 
+(else:)[[[Continue-&gt;EndingPartnership]]]</tw-passagedata><tw-passagedata pid="30" name="Comm A" tags="" position="1175,1450" size="100,100">You continue reviewing recommendations and explaining potential treatment options. Mr. Ahmed listens attentively and occasionally nods. When you finish, he thanks you for the information.
+
+The discussion is respectful and informative, but largely follows your agenda rather than the patient&#39;s. You leave the conversation with confidence that important clinical information was shared. At the same time, you wonder whether there were additional concerns that never surfaced.
+
+You learned:
+* Information sharing is important
+* Patient perspectives may remain unexplored when conversations become provider-directed
 
 [[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="31" name="Comm B" tags="" position="1300,1450" size="100,100">Mr. Ahmed laughs softly.
-
-&#39;&#39;&quot;Actually, I do have a few.&quot;&#39;&#39;
+&lt;blockquote&gt;&quot;Actually, I do have a few.&quot;&lt;/blockquote&gt;
 
 Over the next several minutes he asks questions about medications, follow-up visits, and balancing treatment with daily responsibilities. Several concerns emerge that had not appeared earlier in the conversation. 
 
-[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="32" name="Comm C" tags="" position="1425,1450" size="100,100">Mr. Ahmed smiles.
+You begin to notice how simply creating space for questions changes the tone of the encounter. Rather than receiving information, Mr. Ahmed is now actively shaping the discussion.
 
-&#39;&#39;&quot;I&#39;m glad you asked.&quot;&#39;&#39;
+You learned:
+* Patients often have questions that remain unspoken
+* Inviting participation can improve communication
+* hared dialogue helps reduce power imbalances
+
+[[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="32" name="Comm C" tags="" position="1425,1450" size="100,100">Mr. Ahmed smiles.
+&lt;blockquote&gt;&quot;I&#39;m glad you asked.&quot;&lt;/blockquote&gt;
 
 He proceeds to discuss transportation difficulties, family responsibilities, and concerns about keeping up with appointments. These topics had never appeared in the chart and might not have emerged without the invitation.
+
+As the conversation continues, you become increasingly aware of how easily healthcare encounters can become centered on provider priorities. By stepping back and creating space, you learn more about the patient&#39;s lived experience.
+
+You learned:
+* Self-awareness can improve communication
+* Patients may have concerns that are not immediately visible
+* Recognizing power dynamics strengthens patient-centered care
 
 [[Continue-&gt;Main Menu]]</tw-passagedata><tw-passagedata pid="33" name="Daily Hard" tags="" position="1350,550" size="100,100">Mr. Ahmed immediately responds.
 
